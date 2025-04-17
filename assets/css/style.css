@@ -1,0 +1,22 @@
+body {
+    background: linear-gradient(to right, #ffffff, #CDD3D5, #94A6AD);
+    color: white;
+    height: 100vh;
+  }
+
+  .login-container {
+    margin-top: 150px;
+  }
+  .card {
+    border-radius: 1rem;
+  }
+  .form-control {
+    border-radius: 1rem;
+  }
+  .btn-primary {
+    border-radius: 1rem;
+  }
+  .logo {
+    width: 80px;
+    height: auto;
+  }
