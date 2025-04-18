@@ -15,6 +15,69 @@
   </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light container sticky-top">
+    <img src="../assets/images/valuestat-logo.png" style="width: 150px; margin-left: 0%; margin-top: 1%">    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a style="color: #28A745;" class="nav-link" href="#"><b>Dashboard</b></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Data Master
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="data_siswa.php">Data Siswa</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="data_petugas.php">Data Petugas</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="data-pimpinan.php">Data Pimpinan</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="data-users.php">Data Users</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="data_siswa.php">Data Siswa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data_petugas.php">Data Petugas</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Perpulangan
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="data_perijinan.php">Perijinan</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="data_kedatangan.php">Kedatangan</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Ijin Laptop
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="data-perijinan-laptop.php">Perijinan Laptop</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="data-pengembalian-laptop.php">Pengembalian Laptop</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="data_perijinan.php">Data Perijinan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data_kedatangan.php">Data Kedatangan</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link rounded-pill" href="../logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+
 <div class="container mt-4">
   <h3 class="text-center mb-4">Dashboard Admin - Statistik Nilai</h3>
 
@@ -72,6 +135,8 @@
     </div>
   </div>
 </div>
+
+<?php include "../includes/footer.php"; ?>
 
 <!-- Chart Script -->
 <script>
