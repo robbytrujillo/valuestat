@@ -38,6 +38,7 @@
               </select>
             </div>
             <button type="submit" class="btn btn-primary btn-block">🔐 <b>Login</b></button>
+            <div class="small text-center text-dark text-bold mt-3">&copy; 2025 IT Development IHBS </div>
           </form>
           <?php if (isset($_SESSION['error'])): ?>
             <div class="alert alert-danger mt-3 text-center">
