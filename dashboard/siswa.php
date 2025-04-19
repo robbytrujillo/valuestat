@@ -3,7 +3,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Admin</title>
+  <title>Dashboard Siswa</title>
   <link rel="icon" type="image/x-icon" href="../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -79,7 +79,7 @@
 </nav>
 
 <div class="container mt-4">
-  <h3 class="text-center mb-4">Dashboard Admin - Statistik Nilai</h3>
+  <h3 class="text-center mb-4">Dashboard Siswa - Statistik Nilai</h3>
 
   <!-- Card -->
   <div class="row">
