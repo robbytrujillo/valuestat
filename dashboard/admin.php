@@ -30,11 +30,11 @@
                         Data Master
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="data_siswa.php">Data Siswa</a>
+                        <a class="dropdown-item" href="data-siswa.php">Data Siswa</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="data_petugas.php">Data Petugas</a>
+                        <a class="dropdown-item" href="data-guru.php">Data Guru</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="data-pimpinan.php">Data Pimpinan</a>
+                        <a class="dropdown-item" href="data-mapel.php">Data Mapel</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="data-users.php">Data Users</a>
                     </div>
@@ -167,5 +167,9 @@ const pieChart = new Chart(ctxPie, {
 });
 </script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<!-- bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
