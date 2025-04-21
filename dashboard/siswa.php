@@ -1,20 +1,41 @@
-<!-- Assume session & DB connected -->
+<?php
+include '../includes/db.php';
+session_start();
+
+// Handle tambah data
+if (isset($_POST['tambah'])) {
+  $nis = $_POST['nis'];
+  $nama = $_POST['nama'];
+  $kelas = $_POST['kelas'];
+  $jk = $_POST['jk'];
+  $alamat = $_POST['alamat'];
+
+  $query = "INSERT INTO siswa (nis, nama, kelas, jenis_kelamin, alamat)
+            VALUES ('$nis', '$nama', '$kelas', '$jk', '$alamat')";
+  mysqli_query($conn, $query);
+  header("Location: siswa.php");
+}
+
+// Handle hapus data
+if (isset($_GET['hapus'])) {
+  $id = $_GET['hapus'];
+  mysqli_query($conn, "DELETE FROM siswa WHERE id = $id");
+  header("Location: siswa.php");
+}
+?>
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Siswa</title>
+  <title>CRUD Data Siswa</title>
   <link rel="icon" type="image/x-icon" href="../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    .card-icon {
-      font-size: 30px;
-    }
-  </style>
 </head>
 <body>
+
+<!-- <?php include 'includes/sidebar.php'; ?> -->
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light container sticky-top">
     <img src="../assets/images/valuestat-logo.png" style="width: 150px; margin-left: 0%; margin-top: 1%">    
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,97 +100,67 @@
 </nav>
 
 <div class="container mt-4">
-  <h3 class="text-center mb-4">Dashboard Siswa - Statistik Nilai</h3>
+  <h2>Data Siswa</h2>
+  <form action="" method="POST" class="mb-4">
+    <div class="form-row">
+      <div class="col-md-2"><input type="text" name="nis" class="form-control" placeholder="NIS" required></div>
+      <div class="col-md-3"><input type="text" name="nama" class="form-control" placeholder="Nama Siswa" required></div>
+      <div class="col-md-2"><input type="text" name="kelas" class="form-control" placeholder="Kelas" required></div>
+      <div class="col-md-2">
+        <select name="jk" class="form-control">
+          <option value="Laki-laki">Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
+      </div>
+      <div class="col-md-2"><input type="text" name="alamat" class="form-control" placeholder="Alamat"></div>
+      <div class="col-md-1">
+        <button type="submit" name="tambah" class="btn btn-success btn-block rounded-pill">Tambah</button>
+      </div>
+    </div>
+  </form>
 
-  <!-- Card -->
-  <div class="row">
-    <div class="col-md-3 mb-3">
-      <div class="card bg-info text-white shadow h-100 py-2">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div><i class="card-icon fas fa-users"></i> User</div>
-            <h4>15</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <div class="card bg-success text-white shadow h-100 py-2">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div><i class="card-icon fas fa-user-graduate"></i> Siswa</div>
-            <h4>200</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <div class="card bg-warning text-white shadow h-100 py-2">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div><i class="card-icon fas fa-chalkboard-teacher"></i> Petugas</div>
-            <h4>10</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <div class="card bg-danger text-white shadow h-100 py-2">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <div><i class="card-icon fas fa-chart-line"></i> Statistik</div>
-            <h4>48</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Grafik -->
-  <div class="row">
-    <div class="col-md-8">
-      <canvas id="lineChart" height="200"></canvas>
-    </div>
-    <div class="col-md-4">
-      <canvas id="pieChart" height="200"></canvas>
-    </div>
-  </div>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>No</th>
+        <th>NIS</th>
+        <th>Nama</th>
+        <th>Kelas</th>
+        <th>JK</th>
+        <th>Alamat</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      $siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY id DESC");
+      $no = 1;
+      while ($row = mysqli_fetch_assoc($siswa)) :
+      ?>
+        <tr>
+          <td><?= $no++ ?></td>
+          <td><?= $row['nis'] ?></td>
+          <td><?= $row['nama'] ?></td>
+          <td><?= $row['kelas'] ?></td>
+          <td><?= $row['jenis_kelamin'] ?></td>
+          <td><?= $row['alamat'] ?></td>
+          <td>
+            <a href="edit-siswa.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm rounded-pill">Edit</a>
+            <a href="?hapus=<?= $row['id'] ?>" onclick="return confirm('Yakin?')" class="btn btn-danger btn-sm rounded-pill">Hapus</a>
+          </td>
+        </tr>
+      <?php endwhile ?>
+    </tbody>
+  </table>
 </div>
 
 <?php include "../includes/footer.php"; ?>
 
-<!-- Chart Script -->
-<script>
-const ctx = document.getElementById('lineChart').getContext('2d');
-const lineChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['1 Mar', '5 Mar', '10 Mar', '15 Mar', '20 Mar', '25 Mar', '30 Mar'],
-    datasets: [{
-      label: 'Nilai Rata-rata',
-      data: [78, 82, 81, 85, 80, 84, 87],
-      borderColor: 'blue',
-      fill: false
-    }]
-  }
-});
-
-const ctxPie = document.getElementById('pieChart').getContext('2d');
-const pieChart = new Chart(ctxPie, {
-  type: 'pie',
-  data: {
-    labels: ['Izin', 'Sakit', 'Alpa'],
-    datasets: [{
-      data: [10, 5, 3],
-      backgroundColor: ['#007bff', '#ffc107', '#dc3545']
-    }]
-  }
-});
-</script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 <!-- bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
