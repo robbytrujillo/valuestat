@@ -50,14 +50,14 @@ if (isset($_POST['update'])) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a style="color: #28A745;" class="nav-link" href="#"><b>Dashboard</b></a>
+                    <a style="color: #28A745;" class="nav-link" href="dashboard.php"><b>Dashboard</b></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                         Data Master
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="siswa.php">Data Siswa</a>
+                        <a class="dropdown-item" href="data-siswa.php">Data Siswa</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="data-guru.php">Data Guru</a>
                         <div class="dropdown-divider"></div>
@@ -109,7 +109,7 @@ if (isset($_POST['update'])) {
   <div class="row justify-content-center">
     <div class="col-md-5">
       <div class="card p-4 shadow-md" style="border-radius: 5%;">
-        <h2 class="text-center mt-3 mb-3"><span style="color: #668A4E">Edit Data Siswa</span></h2>
+        <h2 class="text-center mt-3 mb-3"><span style="color: #50A745">Edit Data Siswa</span></h2>
         <form action="" method="POST">
             <div class="form-group">
               <label for="nis">NIS</label>
