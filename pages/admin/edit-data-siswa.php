@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
 <head>
   <meta charset="UTF-8">
   <title>Edit Siswa</title>
-  <link rel="icon" type="image/x-icon" href="../assets/images/ihbs-logo.png">
+  <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -99,41 +99,49 @@ if (isset($_POST['update'])) {
                     <a class="nav-link" href="data_kedatangan.php">Data Kedatangan</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link rounded-pill" href="../logout.php">Logout</a>
+                    <a class="nav-link rounded-pill" href="../../logout.php">Logout</a>
                 </li>
             </ul>
         </div>
 </nav>
 
-<div class="container mt-4">
-  <h2>Edit Data Siswa</h2>
-  <form action="" method="POST">
-    <div class="form-group">
-      <label for="nis">NIS</label>
-      <input type="text" name="nis" class="form-control" value="<?= $siswa['nis'] ?>" required>
+<div class="container mt-4 ">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card p-4 shadow-md" style="border-radius: 5%;">
+        <h2 class="text-center mt-3 mb-3"><span style="color: #668A4E">Edit Data Siswa</span></h2>
+        <form action="" method="POST">
+            <div class="form-group">
+              <label for="nis">NIS</label>
+              <input type="text" name="nis" class="form-control" value="<?= $siswa['nis'] ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="nama">Nama Siswa</label>
+              <input type="text" name="nama" class="form-control" value="<?= $siswa['nama'] ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="kelas">Kelas</label>
+              <input type="text" name="kelas" class="form-control" value="<?= $siswa['kelas'] ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="jk">Jenis Kelamin</label>
+              <select name="jk" class="form-control">
+                <option value="Laki-laki" <?= $siswa['jenis_kelamin'] == 'Laki-laki' ? 'selected' : '' ?>>Laki-laki</option>
+                <option value="Perempuan" <?= $siswa['jenis_kelamin'] == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="alamat">Alamat</label>
+              <textarea name="alamat" class="form-control"><?= $siswa['alamat'] ?></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" name="update" class="btn btn-success rounded-pill">Update</button>
+              <a href="data-siswa.php" class="btn btn-info rounded-pill">Kembali</a>
+            </div>
+        </form>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="nama">Nama Siswa</label>
-      <input type="text" name="nama" class="form-control" value="<?= $siswa['nama'] ?>" required>
-    </div>
-    <div class="form-group">
-      <label for="kelas">Kelas</label>
-      <input type="text" name="kelas" class="form-control" value="<?= $siswa['kelas'] ?>" required>
-    </div>
-    <div class="form-group">
-      <label for="jk">Jenis Kelamin</label>
-      <select name="jk" class="form-control">
-        <option value="Laki-laki" <?= $siswa['jenis_kelamin'] == 'Laki-laki' ? 'selected' : '' ?>>Laki-laki</option>
-        <option value="Perempuan" <?= $siswa['jenis_kelamin'] == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="alamat">Alamat</label>
-      <textarea name="alamat" class="form-control"><?= $siswa['alamat'] ?></textarea>
-    </div>
-    <button type="submit" name="update" class="btn btn-success">Update</button>
-    <a href="data-siswa.php" class="btn btn-secondary">Kembali</a>
-  </form>
+  </div>
 </div>
 
 </body>

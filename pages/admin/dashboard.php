@@ -72,7 +72,7 @@
                     <a class="nav-link" href="data_kedatangan.php">Data Kedatangan</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link rounded-pill" href="../logout.php">Logout</a>
+                    <a class="nav-link rounded-pill" href="../../logout.php">Logout</a>
                 </li>
             </ul>
         </div>

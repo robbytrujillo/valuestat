@@ -28,8 +28,8 @@ if (isset($_GET['hapus'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CRUD Data Siswa</title>
-  <link rel="icon" type="image/x-icon" href="../assets/images/ihbs-logo.png">
+  <title>Data Siswa</title>
+  <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body style="background:  #F6F8FD">
@@ -93,7 +93,7 @@ if (isset($_GET['hapus'])) {
                     <a class="nav-link" href="data_kedatangan.php">Data Kedatangan</a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link rounded-pill" href="../logout.php">Logout</a>
+                    <a class="nav-link rounded-pill" href="../../logout.php">Logout</a>
                 </li>
             </ul>
         </div>
