@@ -15,7 +15,7 @@ if (mysqli_num_rows($result) === 1) {
     $_SESSION['role'] = $role;
 
     if ($role == 'admin') {
-        header('Location: dashboard/admin.php');
+        header('Location: pages/admin/dashboard.php');
     } elseif ($role == 'guru') {
         header('Location: dashboard/guru.php');
     } elseif ($role == 'siswa') {

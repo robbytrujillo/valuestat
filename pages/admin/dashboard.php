@@ -3,7 +3,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Guru</title>
+  <title>Dashboard Admin</title>
   <link rel="icon" type="image/x-icon" href="../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,9 +14,9 @@
     }
   </style>
 </head>
-<body>
+<body style="background:  #F6F8FD">
 <nav class="navbar navbar-expand-lg navbar-light bg-light container sticky-top">
-    <img src="../assets/images/valuestat-logo.png" style="width: 150px; margin-left: 0%; margin-top: 1%">    
+    <img src="../../assets/images/valuestat-logo.png" style="width: 150px; margin-left: 0%; margin-top: 1%">    
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +30,7 @@
                         Data Master
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="siswa.php">Data Siswa</a>
+                        <a class="dropdown-item" href="data-siswa.php">Data Siswa</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="data-guru.php">Data Guru</a>
                         <div class="dropdown-divider"></div>
@@ -79,7 +79,7 @@
 </nav>
 
 <div class="container mt-4">
-  <h3 class="text-center mb-4">Dashboard Guru - Statistik Nilai</h3>
+  <h3 class="text-center mb-4">Dashboard Admin - Statistik Nilai</h3>
 
   <!-- Card -->
   <div class="row">
@@ -136,7 +136,7 @@
   </div>
 </div>
 
-<?php include "../includes/footer.php"; ?>
+<?php include "../../includes/footer.php"; ?>
 
 <!-- Chart Script -->
 <script>
