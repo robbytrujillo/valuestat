@@ -2,8 +2,12 @@
 include '../../includes/db.php';
 session_start();
 
-// Tambah guru
-if (isset($_POST['tambah'])) {
+$id = $_GET['id'];
+$data = mysqli_query($conn, "SELECT * FROM guru WHERE id = $id");
+$guru = mysqli_fetch_assoc($data);
+
+// Proses update
+if (isset($_POST['update'])) {
   $nip = $_POST['nip'];
   $nama = $_POST['nama'];
   $mapel = $_POST['mapel'];
@@ -11,17 +15,20 @@ if (isset($_POST['tambah'])) {
   $no_hp = $_POST['no_hp'];
   $email = $_POST['email'];
 
-  $query = "INSERT INTO guru (nip, nama, mapel, jenis_kelamin, no_hp, email)
-            VALUES ('$nip', '$nama', '$mapel', '$jk', '$no_hp', '$email')";
-  mysqli_query($conn, $query);
-  header("Location: data-guru.php");
-}
+  $query = "UPDATE guru SET 
+              nip = '$nip',
+              nama = '$nama',
+              mapel = '$mapel',
+              jenis_kelamin = '$jk',
+              no_hp = '$no_hp',
+              email = '$email'
+            WHERE id = $id";
 
-// Hapus guru
-if (isset($_GET['hapus'])) {
-  $id = $_GET['hapus'];
-  mysqli_query($conn, "DELETE FROM guru WHERE id = $id");
-  header("Location: guru.php");
+  if (mysqli_query($conn, $query)) {
+    header("Location: guru.php");
+  } else {
+    echo "Gagal mengupdate data!";
+  }
 }
 ?>
 
@@ -29,11 +36,9 @@ if (isset($_GET['hapus'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Data Guru</title>
+  <title>Edit Data Guru</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -103,67 +108,48 @@ if (isset($_GET['hapus'])) {
 </nav>
 
 <div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-12">
-      <div class="card p-4 shadow-md" style="border-radius: 5%;">
-        <h2 class="text-center mt-2 mb-3"><span style="color: #50A745">Data Guru</span></h2>
-        <form action="" method="POST" class="mb-4">
-          <div class="form-row">
-            <div class="col-md-2"><input type="text" name="nip" class="form-control" placeholder="NIP" required></div>
-            <div class="col-md-3"><input type="text" name="nama" class="form-control" placeholder="Nama Guru" required></div>
-            <div class="col-md-2"><input type="text" name="mapel" class="form-control" placeholder="Mapel" required></div>
-            <div class="col-md-2">
-              <select name="jk" class="form-control">
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-              </select>
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card p-4 shadow-md" style="border-radius: 5%;">
+                <h2 class="text-center mt-3 mb-3"><span style="color: #50A745">Edit Data Guru</span></h2>
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label for="nip">NIP</label>
+                        <input type="text" name="nip" class="form-control" value="<?= $guru['nip'] ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama Guru</label>
+                        <input type="text" name="nama" class="form-control" value="<?= $guru['nama'] ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mapel">Mata Pelajaran</label>
+                        <input type="text" name="mapel" class="form-control" value="<?= $guru['mapel'] ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jk">Jenis Kelamin</label>
+                        <select name="jk" class="form-control">
+                        <option value="Laki-laki" <?= $guru['jenis_kelamin'] == 'Laki-laki' ? 'selected' : '' ?>>Laki-laki</option>
+                        <option value="Perempuan" <?= $guru['jenis_kelamin'] == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_hp">No. HP</label>
+                        <input type="text" name="no_hp" class="form-control" value="<?= $guru['no_hp'] ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" value="<?= $guru['email'] ?>">
+                    </div>
+                    <button type="submit" name="update" class="btn btn-success rounded-pill">Update</button>
+                    <a href="data-guru.php" class="btn btn-secondary rounded-pill">Kembali</a>
+                </form>    
             </div>
-            <div class="col-md-2"><input type="text" name="no_hp" class="form-control" placeholder="No. HP"></div>
-            <div class="col-md-3 mt-2"><input type="email" name="email" class="form-control" placeholder="Email"></div>
-            <div class="col-md-1 mt-2">
-              <button type="submit" name="tambah" class="btn btn-primary btn-md btn-block rounded-pill">Add</button>
-            </div>
-          </div>
-        </form>
+        </div>
+    </div>    
 
-        <table class="table table-bordered-0 table-striped">
-          <thead class="thead-light">
-            <tr>
-              <th>No</th>
-              <th>NIP</th>
-              <th>Nama</th>
-              <th>Mapel</th>
-              <th>JK</th>
-              <th>No. HP</th>
-              <th>Email</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>                      
-          <tbody>
-            <?php
-            $guru = mysqli_query($conn, "SELECT * FROM guru ORDER BY id DESC");
-            $no = 1;
-            while ($row = mysqli_fetch_assoc($guru)) :
-            ?>
-              <tr>
-                <td><?= $no++ ?></td>
-                <td><?= $row['nip'] ?></td>
-                <td><?= $row['nama'] ?></td>
-                <td><?= $row['mapel'] ?></td>
-                <td><?= $row['jenis_kelamin'] ?></td>
-                <td><?= $row['no_hp'] ?></td>
-                <td><?= $row['email'] ?></td>
-                <td>
-                  <a href="edit-data-guru.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm rounded-pill">Edit</a>
-                  <a href="?hapus=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus?')" class="btn btn-danger btn-sm rounded-pill">Hapus</a>
-                </td>
-              </tr>
-            <?php endwhile ?>
-          </tbody>
-        </table>  
-      </div>
-    </div>
-  </div>
+
+  <!-- <h2>Edit Data Guru</h2> -->
+ 
 </div>
 
 <!-- bootstrap -->
