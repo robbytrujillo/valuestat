@@ -113,30 +113,30 @@ if (isset($_POST['update'])) {
         <form action="" method="POST">
             <div class="form-group">
               <label for="nis">NIS</label>
-              <input type="text" name="nis" class="form-control" value="<?= $siswa['nis'] ?>" required>
+              <input type="text" name="nis" class="form-control rounded-pill" value="<?= $siswa['nis'] ?>" required>
             </div>
             <div class="form-group">
               <label for="nama">Nama Siswa</label>
-              <input type="text" name="nama" class="form-control" value="<?= $siswa['nama'] ?>" required>
+              <input type="text" name="nama" class="form-control rounded-pill" value="<?= $siswa['nama'] ?>" required>
             </div>
             <div class="form-group">
               <label for="kelas">Kelas</label>
-              <input type="text" name="kelas" class="form-control" value="<?= $siswa['kelas'] ?>" required>
+              <input type="text" name="kelas" class="form-control rounded-pill" value="<?= $siswa['kelas'] ?>" required>
             </div>
             <div class="form-group">
               <label for="jk">Jenis Kelamin</label>
-              <select name="jk" class="form-control">
+              <select name="jk" class="form-control rounded-pill">
                 <option value="Laki-laki" <?= $siswa['jenis_kelamin'] == 'Laki-laki' ? 'selected' : '' ?>>Laki-laki</option>
                 <option value="Perempuan" <?= $siswa['jenis_kelamin'] == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
               </select>
             </div>
             <div class="form-group">
               <label for="alamat">Alamat</label>
-              <textarea name="alamat" class="form-control"><?= $siswa['alamat'] ?></textarea>
+              <textarea name="alamat" class="form-control rounded-pill"><?= $siswa['alamat'] ?></textarea>
             </div>
             <div class="text-center">
-              <button type="submit" name="update" class="btn btn-success rounded-pill">Update</button>
-              <a href="data-siswa.php" class="btn btn-info rounded-pill">Kembali</a>
+              <button type="submit" name="update" class="btn btn-success btn-sm rounded-pill">Update</button>
+              <a href="data-siswa.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
             </div>
         </form>
       </div>

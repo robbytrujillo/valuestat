@@ -140,8 +140,10 @@ if (isset($_POST['update'])) {
                         <label for="email">Email</label>
                         <input type="email" name="email" class="form-control rounded-pill" value="<?= $guru['email'] ?>">
                     </div>
-                    <button type="submit" name="update" class="btn btn-success rounded-pill">Update</button>
-                    <a href="data-guru.php" class="btn btn-secondary rounded-pill">Kembali</a>
+                    <div class="text-center">
+                        <button type="submit" name="update" class="btn btn-success btn-sm rounded-pill">Update</button>
+                        <a href="data-guru.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
+                    </div>
                 </form>    
             </div>
         </div>
