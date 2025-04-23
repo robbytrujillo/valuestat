@@ -115,30 +115,30 @@ if (isset($_POST['update'])) {
                 <form action="" method="POST">
                     <div class="form-group">
                         <label for="nip">NIP</label>
-                        <input type="text" name="nip" class="form-control" value="<?= $guru['nip'] ?>" required>
+                        <input type="text" name="nip" class="form-control rounded-pill" value="<?= $guru['nip'] ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="nama">Nama Guru</label>
-                        <input type="text" name="nama" class="form-control" value="<?= $guru['nama'] ?>" required>
+                        <input type="text" name="nama" class="form-control rounded-pill" value="<?= $guru['nama'] ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="mapel">Mata Pelajaran</label>
-                        <input type="text" name="mapel" class="form-control" value="<?= $guru['mapel'] ?>" required>
+                        <input type="text" name="mapel" class="form-control rounded-pill" value="<?= $guru['mapel'] ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="jk">Jenis Kelamin</label>
-                        <select name="jk" class="form-control">
+                        <select name="jk" class="form-control rounded-pill">
                         <option value="Laki-laki" <?= $guru['jenis_kelamin'] == 'Laki-laki' ? 'selected' : '' ?>>Laki-laki</option>
                         <option value="Perempuan" <?= $guru['jenis_kelamin'] == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="no_hp">No. HP</label>
-                        <input type="text" name="no_hp" class="form-control" value="<?= $guru['no_hp'] ?>">
+                        <input type="text" name="no_hp" class="form-control rounded-pill" value="<?= $guru['no_hp'] ?>">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" value="<?= $guru['email'] ?>">
+                        <input type="email" name="email" class="form-control rounded-pill" value="<?= $guru['email'] ?>">
                     </div>
                     <button type="submit" name="update" class="btn btn-success rounded-pill">Update</button>
                     <a href="data-guru.php" class="btn btn-secondary rounded-pill">Kembali</a>
@@ -146,11 +146,9 @@ if (isset($_POST['update'])) {
             </div>
         </div>
     </div>    
-
-
-  <!-- <h2>Edit Data Guru</h2> -->
- 
 </div>
+
+<?php include "../../includes/footer.php"; ?>
 
 <!-- bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

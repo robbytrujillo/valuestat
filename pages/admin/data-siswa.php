@@ -13,14 +13,14 @@ if (isset($_POST['tambah'])) {
   $query = "INSERT INTO siswa (nis, nama, kelas, jenis_kelamin, alamat)
             VALUES ('$nis', '$nama', '$kelas', '$jk', '$alamat')";
   mysqli_query($conn, $query);
-  header("Location: siswa.php");
+  header("Location: data-siswa.php");
 }
 
 // Handle hapus data
 if (isset($_GET['hapus'])) {
   $id = $_GET['hapus'];
   mysqli_query($conn, "DELETE FROM siswa WHERE id = $id");
-  header("Location: siswa.php");
+  header("Location: data-siswa.php");
 }
 ?>
 
@@ -108,18 +108,18 @@ if (isset($_GET['hapus'])) {
         <h2 class="text-center mt-2 mb-3"><span style="color: #50A745">Data Siswa</span></h2>
         <form action="" method="POST" class="mb-4">
           <div class="form-row">
-            <div class="col-md-2"><input type="text" name="nis" class="form-control" placeholder="NIS" required></div>
-            <div class="col-md-3"><input type="text" name="nama" class="form-control" placeholder="Nama Siswa" required></div>
-            <div class="col-md-2"><input type="text" name="kelas" class="form-control" placeholder="Kelas" required></div>
+            <div class="col-md-2"><input type="text" name="nis" class="form-control rounded-pill" placeholder="NIS" required></div>
+            <div class="col-md-3"><input type="text" name="nama" class="form-control rounded-pill" placeholder="Nama Siswa" required></div>
+            <div class="col-md-2"><input type="text" name="kelas" class="form-control rounded-pill" placeholder="Kelas" required></div>
             <div class="col-md-2">
-              <select name="jk" class="form-control">
+              <select name="jk" class="form-control rounded-pill">
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
             </div>
-            <div class="col-md-2"><input type="text" name="alamat" class="form-control" placeholder="Alamat"></div>
+            <div class="col-md-2"><input type="text" name="alamat" class="form-control rounded-pill" placeholder="Alamat"></div>
             <div class="col-md-1">
-              <button type="submit" name="tambah" class="btn btn-success btn-md btn-block rounded-pill">+</button>
+              <button type="submit" name="tambah" class="btn btn-success btn-md btn-block rounded-pill">Add</button>
             </div>
           </div>
         </form>
@@ -159,17 +159,7 @@ if (isset($_GET['hapus'])) {
         </table>
       </div>
     </div>
-  </div>  
-
-
-
-
-
-
- 
-  
-
- 
+  </div>   
 </div>
 
 <?php include "../../includes/footer.php"; ?>
