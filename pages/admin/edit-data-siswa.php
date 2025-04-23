@@ -36,7 +36,10 @@ if (isset($_POST['update'])) {
   <meta charset="UTF-8">
   <title>Edit Siswa</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
+  <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 

@@ -1,43 +1,20 @@
-<?php
-include '../../includes/db.php';
-session_start();
-
-$id = $_GET['id'];
-$data = mysqli_query($conn, "SELECT * FROM kelas WHERE id = $id");
-$kelas = mysqli_fetch_assoc($data);
-
-// Proses update
-if (isset($_POST['update'])) {
-  $kode_kelas = $_POST['kode_kelas'];
-  $nama_kelas = $_POST['nama_kelas'];
-
-  $query = "UPDATE kelas SET 
-              kode_kelas = '$kode_kelas',
-              nama_kelas = '$nama_kelas'
-            WHERE id = $id";
-
-  if (mysqli_query($conn, $query)) {
-    header("Location: data-kelas.php");
-  } else {
-    echo "Gagal mengupdate data!";
-  }
-}
-?>
-
+<!-- Assume session & DB connected -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Edit Data Kelas</title>
+  <title>Dashboard Guru</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .card-icon {
+      font-size: 30px;
+    }
+  </style>
 </head>
-<body>
-
-<!-- <?php include 'includes/sidebar.php'; ?> -->
-
+<body style="background:  #F6F8FD">
 <nav class="navbar navbar-expand-lg navbar-light bg-light container sticky-top">
     <img src="../../assets/images/valuestat-logo.png" style="width: 150px; margin-left: 0%; margin-top: 1%">    
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +32,7 @@ if (isset($_POST['update'])) {
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="data-siswa.php">Data Siswa</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="data-guru.php">Data Guru</a>
+                        <a class="dropdown-item" href="input-nilai.php">Input Nilai</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="data-mapel.php">Data Mapel</a>
                         <div class="dropdown-divider"></div>
@@ -73,7 +50,7 @@ if (isset($_POST['update'])) {
                         Data Nilai
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="nilai-harian.php">Nilai Harian</a>
+                        <a class="dropdown-item" href="input-nilai.php">Input Nilai</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="nilai-bulanan.php">Nilai Bulanan</a>
                     </div>
@@ -102,34 +79,97 @@ if (isset($_POST['update'])) {
 </nav>
 
 <div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-5">
-            <div class="card p-4 shadow-md" style="border-radius: 5%;">
-                <h2 class="text-center mt-3 mb-3"><span style="color: #50A745">Edit Data Kelas</span></h2>
-                <form action="" method="POST">
-                    <div class="form-group">
-                        <label for="kode_kelas">Kode Kelas</label>
-                        <input type="text" name="kode_kelas" class="form-control rounded-pill" value="<?= $kelas['kode_kelas'] ?>" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nama_kelas">Nama Kelas</label>
-                        <input type="text" name="nama_kelas" class="form-control rounded-pill" value="<?= $kelas['nama_kelas'] ?>" required>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" name="update" class="btn btn-success btn-sm rounded-pill">Update</button>
-                        <a href="data-kelas.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
-                    </div>
-                </form>
-            </div>
+  <h3 class="text-center mb-4">Dashboard Admin - Statistik Nilai</h3>
+
+  <!-- Card -->
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <div class="card bg-info text-white shadow h-100 py-2">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div><i class="card-icon fas fa-users"></i> User</div>
+            <h4>15</h4>
+          </div>
         </div>
-    </div>            
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card bg-success text-white shadow h-100 py-2">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div><i class="card-icon fas fa-user-graduate"></i> Siswa</div>
+            <h4>200</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card bg-warning text-white shadow h-100 py-2">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div><i class="card-icon fas fa-chalkboard-teacher"></i> Petugas</div>
+            <h4>10</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card bg-danger text-white shadow h-100 py-2">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div><i class="card-icon fas fa-chart-line"></i> Statistik</div>
+            <h4>48</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grafik -->
+  <div class="row">
+    <div class="col-md-8">
+      <canvas id="lineChart" height="200"></canvas>
+    </div>
+    <div class="col-md-4">
+      <canvas id="pieChart" height="200"></canvas>
+    </div>
+  </div>
 </div>
 
 <?php include "../../includes/footer.php"; ?>
 
+<!-- Chart Script -->
+<script>
+const ctx = document.getElementById('lineChart').getContext('2d');
+const lineChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['1 Mar', '5 Mar', '10 Mar', '15 Mar', '20 Mar', '25 Mar', '30 Mar'],
+    datasets: [{
+      label: 'Nilai Rata-rata',
+      data: [78, 82, 81, 85, 80, 84, 87],
+      borderColor: 'blue',
+      fill: false
+    }]
+  }
+});
+
+const ctxPie = document.getElementById('pieChart').getContext('2d');
+const pieChart = new Chart(ctxPie, {
+  type: 'pie',
+  data: {
+    labels: ['Izin', 'Sakit', 'Alpa'],
+    datasets: [{
+      data: [10, 5, 3],
+      backgroundColor: ['#007bff', '#ffc107', '#dc3545']
+    }]
+  }
+});
+</script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
 <!-- bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

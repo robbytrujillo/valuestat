@@ -106,7 +106,7 @@ if (isset($_GET['hapus'])) {
   <div class="row justify-content-center">
     <div class="col-md-12">
       <div class="card p-4 shadow-md" style="border-radius: 5%;">
-        <h2 class="text-center mt-2 mb-3"><span style="color: #50A745">Data Guru</span></h2>
+        <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA GURU</b></span></h3>
         <form action="" method="POST" class="mb-4">
           <div class="form-row">
             <div class="col-md-2"><input type="text" name="nip" class="form-control rounded-pill" placeholder="NIP" required></div>

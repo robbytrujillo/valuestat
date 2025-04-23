@@ -23,7 +23,10 @@ if (isset($_GET['hapus'])) {
 <head>
   <meta charset="UTF-8">
   <title>Data Kelas</title>
+  <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -96,7 +99,7 @@ if (isset($_GET['hapus'])) {
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card p-4 shadow-md" style="border-radius: 5%;">
-                <h2 class="text-center mt-2 mb-3"><span style="color: #50A745">Data Kelas</span></h2>
+                <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA KELAS</b></span></h3>
                 <form action="" method="POST" class="mb-4">
                     <div class="form-row">
                         <div class="col-md-3">
