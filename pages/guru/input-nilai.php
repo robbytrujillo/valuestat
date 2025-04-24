@@ -36,8 +36,17 @@ if (isset($_POST['simpan'])) {
 
   <!-- jQuery UI Autocomplete -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+
+<style>
+  #suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin-top: 5px;
+  }
+</style>
 
 </head>
 <body>
@@ -68,12 +77,6 @@ if (isset($_POST['simpan'])) {
                         <a class="dropdown-item" href="data-kelas.php">Data Kelas</a>
                     </div>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="data_siswa.php">Data Siswa</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="data_petugas.php">Data Petugas</a>
-                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                         Data Nilai
@@ -84,22 +87,6 @@ if (isset($_POST['simpan'])) {
                         <a class="dropdown-item" href="nilai-bulanan.php">Nilai Bulanan</a>
                     </div>
                 </li>
-                <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                        Ijin Laptop
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="data-perijinan-laptop.php">Perijinan Laptop</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="data-pengembalian-laptop.php">Pengembalian Laptop</a>
-                    </div>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="data_perijinan.php">Data Perijinan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="data_kedatangan.php">Data Kedatangan</a>
-                </li> -->
                 <li class="nav-item">
                     <a class="nav-link rounded-pill" href="../../logout.php">Logout</a>
                 </li>
@@ -117,14 +104,15 @@ if (isset($_POST['simpan'])) {
           <div class="form-group">
             <label>Nama Siswa</label>
             <input type="text" name="nama" id="nama" class="form-control rounded-pill" required>
+            <div id="suggestions" class="list-group" style="position:absolute; z-index:1000;"></div>
           </div>
           <div class="form-group">
             <label>Nomor Induk Siswa</label>
-            <input type="text" name="nis" id="nis" class="form-control rounded-pill" readonly required>
+            <input type="text" name="nis" id="nis" class="form-control rounded-pill">
           </div>
           <div class="form-group">
             <label>Kelas</label>
-            <input type="text" name="kelas" id="kelas" class="form-control rounded-pill" readonly required>
+            <input type="text" name="kelas" id="kelas" class="form-control rounded-pill">
           </div>
 
           <!-- <div class="form-group">
@@ -171,47 +159,36 @@ if (isset($_POST['simpan'])) {
 <?php include "../../includes/footer.php"; ?>
 
 <!-- bootstrap -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<script>
-  $(document).ready(function() {
-  // Saat user mengetik di input nama_siswa
-      $("#nama_siswa").on("input", function() {
-          var nama = $(this).val();
-          if (nama.length > 2) {  // Minimal 3 karakter untuk pencarian
-              $.ajax({
-                  url: "cari_siswa.php",
-                  type: "GET",
-                  data: {nama_siswa: nama},
-                  success: function(response) {
-                      let data = JSON.parse(response);
-                      if (data.length > 0) {
-                          $("#suggestions").empty().show();
-                          data.forEach(function(item) {
-                              $("#suggestions").append(`<a href="#" class="list-group-item list-group-item-action" onclick="pilihSiswa('${item.nama_siswa}', '${item.nomor_induk}', '${item.kelas}')">${item.nama_siswa}</a>`);
-                          });
-                      } else {
-                          $("#suggestions").hide();
-                      }
-                                      }
-              });
-          } else {
-              $("#suggestions").hide();
-          }
-      });
-  });
 
-  // Fungsi untuk mengisi input otomatis setelah memilih nama siswa
-  function pilihSiswa(nama, nomor_induk, kelas) {
-      $("#nama_siswa").val(nama);
-      $("#nomor_induk").val(nomor_induk);
-      $("#kelas").val(kelas);
-      $("#suggestions").hide();
-  }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  $('input[name="name"]').on('change', function() {
+    var nama = $(this).val();
+    if (nama !== '') {
+      $.ajax({
+        url: '../../models/cari-siswa.php',
+        type: 'GET',
+        data: { nama: nama },
+        dataType: 'json',
+        success: function(data) {
+          $('input[name="nis"]').val(data.nis);
+          $('input[name="kelas"]').val(data.kelas);
+        },
+        error: function() {
+          alert('Gagal mengambil data siswa.');
+        }
+      });
+    }
+  });
+});
 </script>
+
 
 
 </body>
