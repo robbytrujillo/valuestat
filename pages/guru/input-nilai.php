@@ -165,6 +165,7 @@ if (isset($_POST['simpan'])) {
 
 <!-- js-extends -->
 <script src="../../assets/js/cari-siswa.js"></script>
+<script src="../../assets/js/cari-mapel.js"></script>
 
 </body>
 </html>
