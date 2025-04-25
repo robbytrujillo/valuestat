@@ -124,18 +124,18 @@ if (isset($_POST['simpan'])) {
               <input type="text" class="form-control rounded-pill" id="_mapel" name="nama_mapel" placeholder="Pilih Mapel" autocomplete="off">
               <div id="suggestions-mapel" class="list-group" style="position: absolute; z-index: 1000;"></div>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label>Mata Pelajaran</label>
             <select name="mapel" class="form-control rounded-pill" required>
               <option value="">Pilih Mapel</option>
               <?php
-              $mapel = mysqli_query($conn, "SELECT * FROM mapel");
-              while ($m = mysqli_fetch_assoc($mapel)) {
-                echo "<option value='{$m['nama_mapel']}'>{$m['nama_mapel']}</option>";
-              }
+              // $mapel = mysqli_query($conn, "SELECT * FROM mapel");
+              // while ($m = mysqli_fetch_assoc($mapel)) {
+              //   echo "<option value='{$m['nama_mapel']}'>{$m['nama_mapel']}</option>";
+              // }
               ?>
             </select>
-          </div>
+          </div> -->
           <div class="form-group">
             <label>Nilai</label>
             <input type="number" name="nilai" class="form-control rounded-pill" step="0.01" required>
