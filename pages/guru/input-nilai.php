@@ -107,8 +107,7 @@ if (isset($_POST['simpan'])) {
           <div class="form-group">
               <label for="nama">Nama Siswa</label>
               <input type="text" class="form-control rounded-pill" id="nama" name="nama" placeholder="Isi Nama Siswa" autocomplete="off">
-              <!-- <div id="suggestions" class="list-group" style="position: absolute; z-index: 1000;"></div>  -->
-              <div id="suggestions" class="list-group"></div>
+              <div id="suggestions" class="list-group" style="position: absolute; z-index: 1000;"></div>
           </div>
           <div class="form-group">
               <div class="row">
@@ -119,6 +118,11 @@ if (isset($_POST['simpan'])) {
                       <input type="text" class="form-control bg-light rounded-pill" id="kelas" name="kelas" placeholder="Kelas" readonly>
                   </div>
               </div>    
+          </div>
+          <div class="form-group">
+              <label for="nama">Mata Pelajaran</label>
+              <input type="text" class="form-control rounded-pill" id="_mapel" name="nama_mapel" placeholder="Pilih Mapel" autocomplete="off">
+              <div id="suggestions-mapel" class="list-group" style="position: absolute; z-index: 1000;"></div>
           </div>
           <div class="form-group">
             <label>Mata Pelajaran</label>

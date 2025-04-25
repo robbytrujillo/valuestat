@@ -107,25 +107,27 @@ if (isset($_GET['hapus'])) {
     <div class="col-md-12">
       <div class="card p-4 shadow-md" style="border-radius: 5%;">
         <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA GURU</b></span></h3>
-        <form action="" method="POST" class="mb-4">
-          <div class="form-row">
-            <div class="col-md-2"><input type="text" name="nip" class="form-control rounded-pill" placeholder="NIP" required></div>
-            <div class="col-md-3"><input type="text" name="nama" class="form-control rounded-pill" placeholder="Nama Guru" required></div>
-            <div class="col-md-2"><input type="text" name="mapel" class="form-control rounded-pill" placeholder="Mapel" required></div>
-            <div class="col-md-2">
-              <select name="jk" class="form-control rounded-pill">
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-              </select>
+        <div class="col-md-10">
+          <form action="" method="POST" class="mb-4">
+            <div class="form-row mt-3 mb-2">
+              <div class="col-md-2"><input type="text" name="nip" class="form-control rounded-pill" placeholder="NIP" required></div>
+              <div class="col-md-3"><input type="text" name="nama" class="form-control rounded-pill" placeholder="Nama Guru" required></div>
+              <div class="col-md-2"><input type="text" name="mapel" class="form-control rounded-pill" placeholder="Mapel" required></div>
+              <div class="col-md-2">
+                <select name="jk" class="form-control rounded-pill">
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+              <div class="col-md-2"><input type="text" name="no_hp" class="form-control rounded-pill" placeholder="No. HP"></div>
+              <div class="col-md-3 mt-2"><input type="email" name="email" class="form-control rounded-pill" placeholder="Email"></div>
+              <div class="col-md-1 mt-2">
+                <button type="submit" name="tambah" class="btn btn-primary btn-md btn-block rounded-pill">Add</button>
+              </div>
             </div>
-            <div class="col-md-2"><input type="text" name="no_hp" class="form-control rounded-pill" placeholder="No. HP"></div>
-            <div class="col-md-3 mt-2"><input type="email" name="email" class="form-control rounded-pill" placeholder="Email"></div>
-            <div class="col-md-1 mt-2">
-              <button type="submit" name="tambah" class="btn btn-primary btn-md btn-block rounded-pill">Add</button>
-            </div>
-          </div>
-        </form>
-
+          </form>
+        </div>
+      
         <table class="table table-bordered-0 table-striped">
           <thead class="thead-light">
             <tr>
