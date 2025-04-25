@@ -11,9 +11,9 @@ if ($conn->connect_error) {
 }
 
 if (isset($_GET['nama'])) {
-  // $nama = mysqli_real_escape_string($conn, $_GET['nama']);
-  $nama = $_GET['nama'];
-  $query = "SELECT nama, nis, kelas FROM siswa WHERE nama LIKE '$nama' LIMIT 5";
+  
+  $nama = $conn->real_escape_string($_GET['nama']);
+  $query = "SELECT nama, nis, kelas FROM siswa WHERE nama LIKE '%$nama%' LIMIT 5";
   $result =$conn->query( $query);
 
   $data = [];

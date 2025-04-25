@@ -16,9 +16,9 @@ if (isset($_POST['simpan'])) {
     ('$nis', '$nama', '$kelas', '$mapel', '$nilai', '$ket')";
 
   if (mysqli_query($conn, $query)) {
-    $pesan = "<div class='alert alert-success'>Data nilai berhasil disimpan.</div>";
+    $pesan = "<div class='alert alert-success' id='pesan-sukses'>Data nilai berhasil disimpan.</div>";
   } else {
-    $pesan = "<div class='alert alert-danger'>Gagal menyimpan data nilai.</div>";
+    $pesan = "<div class='alert alert-danger' id='pesan-gagal'>Gagal menyimpan data nilai.</div>";
   }
 }
 ?>
@@ -120,8 +120,8 @@ if (isset($_POST['simpan'])) {
               </div>    
           </div>
           <div class="form-group">
-              <label for="nama">Mata Pelajaran</label>
-              <input type="text" class="form-control rounded-pill" id="_mapel" name="nama_mapel" placeholder="Pilih Mapel" autocomplete="off">
+              <label for="nama_mapel">Mata Pelajaran</label>
+              <input type="text" class="form-control rounded-pill" id="nama_mapel" name="mapel" placeholder="Pilih Mapel" autocomplete="off">
               <div id="suggestions-mapel" class="list-group" style="position: absolute; z-index: 1000;"></div>
           </div>
           <!-- <div class="form-group">
@@ -166,6 +166,7 @@ if (isset($_POST['simpan'])) {
 <!-- js-extends -->
 <script src="../../assets/js/cari-siswa.js"></script>
 <script src="../../assets/js/cari-mapel.js"></script>
+<script src="../../assets/js/time-alert.js"></script>
 
 </body>
 </html>

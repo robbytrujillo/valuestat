@@ -11,9 +11,9 @@ if ($conn->connect_error) {
 }
 
 if (isset($_GET['nama_mapel'])) {
-  // $nama = mysqli_real_escape_string($conn, $_GET['nama']);
-  $nama = $_GET['nama_mapel'];
-  $query = "SELECT nama_mapel, kode_mapel FROM mapel WHERE nama_mapel LIKE '$nama_mapel' LIMIT 5";
+  
+  $nama_mapel = $conn->real_escape_string($_GET['nama_mapel']);
+  $query = "SELECT nama_mapel FROM mapel WHERE nama_mapel LIKE '%$nama_mapel%' LIMIT 5";
   $result =$conn->query( $query);
 
   $data = [];
