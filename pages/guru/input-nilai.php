@@ -1,6 +1,5 @@
 <?php
 include '../../includes/db.php';
-// include '../../models/cari-siswa.php';
 session_start();
 
 if (isset($_POST['simpan'])) {
@@ -30,8 +29,12 @@ if (isset($_POST['simpan'])) {
   <meta charset="UTF-8">
   <title>Input Nilai Siswa</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
+  
+  <!-- bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- css-extend -->
   <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- jQuery UI Autocomplete -->
@@ -102,31 +105,21 @@ if (isset($_POST['simpan'])) {
         <?= isset($pesan) ? $pesan : '' ?>
         <form action="" method="POST">
           <div class="form-group">
-            <label>Nama Siswa</label>
-            <input type="text" name="nama" id="nama" class="form-control rounded-pill" required>
-            <div id="suggestions" class="list-group" style="position:absolute; z-index:1000;"></div>
+              <label for="nama">Nama Siswa</label>
+              <input type="text" class="form-control rounded-pill" id="nama" name="nama" placeholder="Isi Nama Siswa" autocomplete="off">
+              <!-- <div id="suggestions" class="list-group" style="position: absolute; z-index: 1000;"></div>  -->
+              <div id="suggestions" class="list-group"></div>
           </div>
           <div class="form-group">
-            <label>Nomor Induk Siswa</label>
-            <input type="text" name="nis" id="nis" class="form-control rounded-pill">
+              <div class="row">
+                  <div class="col">
+                      <input type="text" class="form-control bg-light rounded-pill" id="nis" name="nis" placeholder="Nomor induk" readonly>
+                  </div>
+                  <div class="col">
+                      <input type="text" class="form-control bg-light rounded-pill" id="kelas" name="kelas" placeholder="Kelas" readonly>
+                  </div>
+              </div>    
           </div>
-          <div class="form-group">
-            <label>Kelas</label>
-            <input type="text" name="kelas" id="kelas" class="form-control rounded-pill">
-          </div>
-
-          <!-- <div class="form-group">
-            <label>Kelas</label>
-            <select name="kelas" class="form-control rounded-pill" required>
-              <option value="">Pilih Kelas</option>
-              <?php
-              // $kelas = mysqli_query($conn, "SELECT * FROM kelas");
-              // while ($k = mysqli_fetch_assoc($kelas)) {
-              //   echo "<option value='{$k['nama_kelas']}'>{$k['nama_kelas']}</option>";
-              // }
-              ?>
-            </select> -->
-          <!-- </div> -->
           <div class="form-group">
             <label>Mata Pelajaran</label>
             <select name="mapel" class="form-control rounded-pill" required>
@@ -162,34 +155,12 @@ if (isset($_POST['simpan'])) {
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<!-- jquery -->
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-$(document).ready(function() {
-  $('input[name="name"]').on('change', function() {
-    var nama = $(this).val();
-    if (nama !== '') {
-      $.ajax({
-        url: '../../models/cari-siswa.php',
-        type: 'GET',
-        data: { nama: nama },
-        dataType: 'json',
-        success: function(data) {
-          $('input[name="nis"]').val(data.nis);
-          $('input[name="kelas"]').val(data.kelas);
-        },
-        error: function() {
-          alert('Gagal mengambil data siswa.');
-        }
-      });
-    }
-  });
-});
-</script>
-
-
+<!-- js-extends -->
+<script src="../../assets/js/cari-siswa.js"></script>
 
 </body>
 </html>

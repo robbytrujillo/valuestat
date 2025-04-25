@@ -23,7 +23,7 @@ if (isset($_POST['update'])) {
             WHERE id = $id";
 
   if (mysqli_query($conn, $query)) {
-    header("Location: siswa.php");
+    header("Location: data-siswa.php");
   } else {
     echo "Gagal mengupdate data!";
   }

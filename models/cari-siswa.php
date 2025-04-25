@@ -1,15 +1,28 @@
 <?php
-include '../includes/db.php';
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "valuestat";  // Ganti sesuai database Anda
+
+$conn = new mysqli($host, $user, $password, $database);
+
+if ($conn->connect_error) {
+  die("Koneksi gagal: " . $conn->connect_error);
+}
 
 if (isset($_GET['nama'])) {
-  $nama = mysqli_real_escape_string($conn, $_GET['nama']);
-  $query = "SELECT nis, kelas FROM siswa WHERE nama = '$nama' LIMIT 1";
-  $result = mysqli_query($conn, $query);
+  // $nama = mysqli_real_escape_string($conn, $_GET['nama']);
+  $nama = $_GET['nama'];
+  $query = "SELECT nama, nis, kelas FROM siswa WHERE nama LIKE '$nama' LIMIT 5";
+  $result =$conn->query( $query);
 
-  if ($row = mysqli_fetch_assoc($result)) {
-    echo json_encode($row);
-  } else {
-    echo json_encode(['nis' => '', 'kelas' => '']);
-  }
+  $data = [];
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    echo json_encode($data);
 }
+
+$conn->close();
 ?>
