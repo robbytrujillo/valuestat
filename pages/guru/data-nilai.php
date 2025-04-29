@@ -112,14 +112,15 @@ if (isset($_GET['hapus'])) {
         <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA NILAI SISWA</b></span></h3>
         <form action="" method="POST" class="mb-4">
           <div class="form-row">
-            <div class="col-md-2"><input type="text" name="nis" class="form-control rounded-pill" placeholder="NIS" required></div>
+            <!-- <div class="col-md-2"><input type="text" name="nis" class="form-control rounded-pill" placeholder="NIS" required></div>
             <div class="col-md-3"><input type="text" name="nama" class="form-control rounded-pill" placeholder="Nama Siswa" required></div>
             <div class="col-md-2"><input type="text" name="kelas" class="form-control rounded-pill" placeholder="Kelas" required></div>
             <div class="col-md-2"><input type="text" name="mapel" class="form-control rounded-pill" placeholder="Mapel" required></div>
             <div class="col-md-2"><input type="text" name="nilai" class="form-control rounded-pill" placeholder="Nilai" required></div>
-            <div class="col-md-2"><input type="text" name="keterangan" class="form-control rounded-pill" placeholder="Keteranagan" required></div>
-            <div class="col-md-1">
-              <button type="submit" name="tambah" class="btn btn-success btn-md btn-block rounded-pill">Add</button>
+            <div class="col-md-2"><input type="text" name="keterangan" class="form-control rounded-pill" placeholder="Keteranagan" required></div> -->
+            <div class="col-md-2">
+              <!-- <button type="submit" name="tambah" class="btn btn-success btn-md btn-block rounded-pill">Add</button> -->
+              <a href="input-nilai.php" class="btn btn-success btn-md btn-block rounded-pill">Tambah</a>
             </div>
           </div>
         </form>

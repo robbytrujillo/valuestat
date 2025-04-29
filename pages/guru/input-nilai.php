@@ -145,7 +145,8 @@ if (isset($_POST['simpan'])) {
             <textarea name="keterangan" class="form-control rounded-pill" rows="3"></textarea>
           </div>
           <div class="text-center">
-            <button type="submit" name="simpan" class="btn btn-success btn-sm rounded-pill">Simpan Nilai</button>
+            <button type="submit" name="simpan" class="btn btn-success btn-sm rounded-pill">Simpan</button>
+            <a href="data-nilai.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
           </div>
         </form>
       </div>
