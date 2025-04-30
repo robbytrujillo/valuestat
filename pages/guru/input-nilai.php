@@ -40,7 +40,6 @@ if (isset($_POST['simpan'])) {
   <!-- jQuery UI Autocomplete -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
-
 <style>
   #suggestions {
     max-height: 200px;
@@ -80,16 +79,38 @@ if (isset($_POST['simpan'])) {
                         <a class="dropdown-item" href="data-kelas.php">Data Kelas</a>
                     </div>
                 </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="data_siswa.php">Data Siswa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data_petugas.php">Data Petugas</a>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                         Data Nilai
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="nilai-harian.php">Nilai Harian</a>
+                        <a class="dropdown-item" href="input-nilai.php">Input Nilai</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="nilai-bulanan.php">Nilai Bulanan</a>
                     </div>
                 </li>
+                <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Ijin Laptop
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="data-perijinan-laptop.php">Perijinan Laptop</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="data-pengembalian-laptop.php">Pengembalian Laptop</a>
+                    </div>
+                </li> -->
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="data_perijinan.php">Data Perijinan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="data_kedatangan.php">Data Kedatangan</a>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link rounded-pill" href="../../logout.php">Logout</a>
                 </li>
@@ -157,12 +178,12 @@ if (isset($_POST['simpan'])) {
 <?php include "../../includes/footer.php"; ?>
 
 <!-- bootstrap -->
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 <!-- js-extends -->
 <script src="../../assets/js/cari-siswa.js"></script>
