@@ -36,7 +36,7 @@ if (isset($_POST['update'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Edit Data Nilai Siswa</title>
+  <title>Edit Nilai Siswa | Guru</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -113,7 +113,7 @@ if (isset($_POST['update'])) {
   <div class="row justify-content-center">
     <div class="col-md-5">
       <div class="card p-4 shadow-md" style="border-radius: 5%;">
-        <h2 class="text-center mt-3 mb-3"><span style="color: #50A745">Edit Data Nilai Siswa</span></h2>
+        <h3 class="text-center mt-3 mb-3"><span style="color: #50A745"><b>EDIT DATA NILAI</b></span></h3>
         <form action="" method="POST">
             <div class="form-group">
               <label for="nis">NIS</label>
