@@ -1,3 +1,20 @@
+<?php 
+include '../../includes/db.php';
+
+$result_siswa = $conn->query("SELECT COUNT(*) AS total FROM siswa");
+$row_siswa = $result_siswa->fetch_assoc();
+
+$result_guru = $conn->query("SELECT COUNT(*) AS total FROM guru");
+$row_guru = $result_guru->fetch_assoc();
+
+$result_mapel = $conn->query("SELECT COUNT(*) AS total FROM mapel");
+$row_mapel = $result_mapel->fetch_assoc();
+
+$result_kelas = $conn->query("SELECT COUNT(*) AS total FROM kelas");
+$row_kelas = $result_kelas->fetch_assoc();
+
+?>
+
 <!-- Assume session & DB connected -->
 <!DOCTYPE html>
 <html lang="id">
@@ -87,8 +104,8 @@
       <div class="card bg-info text-white shadow h-100 py-2">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
-            <div><i class="card-icon fas fa-users"></i> User</div>
-            <h4>15</h4>
+          <div><i class="card-icon fas fa-user-graduate"></i> Guru</div>
+          <h5 class="card-title"><?php echo $row_guru['total']; ?></h5>
           </div>
         </div>
       </div>
@@ -98,7 +115,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
             <div><i class="card-icon fas fa-user-graduate"></i> Siswa</div>
-            <h4>200</h4>
+            <h5 class="card-title"><?php echo $row_siswa['total']; ?></h5>
           </div>
         </div>
       </div>
@@ -107,8 +124,9 @@
       <div class="card bg-warning text-white shadow h-100 py-2">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
-            <div><i class="card-icon fas fa-chalkboard-teacher"></i> Petugas</div>
-            <h4>10</h4>
+            <div><i class="card-icon fas fa-chalkboard-teacher"></i> Mapel</div>
+            <h5 class="card-title"><?php echo $row_mapel
+            ['total']; ?></h5>
           </div>
         </div>
       </div>
@@ -117,8 +135,8 @@
       <div class="card bg-danger text-white shadow h-100 py-2">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
-            <div><i class="card-icon fas fa-chart-line"></i> Statistik</div>
-            <h4>48</h4>
+            <div><i class="card-icon fas fa-chart-line"></i> Kelas</div>
+            <h5 class="card-title"><?php echo $row_kelas['total']; ?></h5>
           </div>
         </div>
       </div>
