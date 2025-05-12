@@ -125,8 +125,8 @@ $row_kelas = $result_kelas->fetch_assoc();
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
             <div><i class="card-icon fas fa-chalkboard-teacher"></i> Mapel</div>
-            <h5 class="card-title"><?php echo $row_mapel
-            ['total']; ?></h5>
+            <h6 class="card-title"><?php echo $row_mapel
+            ['total']; ?></h6>
           </div>
         </div>
       </div>

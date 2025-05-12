@@ -24,6 +24,22 @@ if (isset($_GET['hapus'])) {
   mysqli_query($conn, "DELETE FROM nilai_siswa WHERE id = $id");
   header("Location: data-nilai.php");
 }
+
+// Pagination logic
+$limit = 10; // jumlah data per halaman
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page > 1) ? ($page * $limit) - $limit : 0;
+
+// Hitung total data
+$result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM nilai_siswa");
+$row_total = mysqli_fetch_assoc($result);
+$total = $row_total['total'];
+$pages = ceil($total / $limit);
+
+// Ambil data sesuai halaman
+$nilai_siswa = mysqli_query($conn, "SELECT * FROM nilai_siswa ORDER BY id DESC LIMIT $start, $limit");
+$no = $start + 1;
+
 ?>
 
 <!DOCTYPE html>
@@ -139,10 +155,11 @@ if (isset($_GET['hapus'])) {
             </tr>
           </thead>
           <tbody>
+            <?php while ($row = mysqli_fetch_assoc($nilai_siswa)) : ?>
             <?php
-            $nilai_siswa = mysqli_query($conn, "SELECT * FROM nilai_siswa ORDER BY id DESC");
-            $no = 1;
-            while ($row = mysqli_fetch_assoc($nilai_siswa)) :
+            // $nilai_siswa = mysqli_query($conn, "SELECT * FROM nilai_siswa ORDER BY id DESC");
+            // $no = 1;
+            // while ($row = mysqli_fetch_assoc($nilai_siswa)) :
             ?>
               <tr>
                 <td><?= $no++ ?></td>
@@ -160,6 +177,30 @@ if (isset($_GET['hapus'])) {
             <?php endwhile ?>
           </tbody>
         </table>
+
+         <!-- Pagination -->
+        <nav>
+          <ul class="pagination justify-content-center">
+            <?php if ($page > 1): ?>
+              <li class="page-item">
+                <a class="page-link" href="?page=<?= $page - 1; ?>">« Prev</a>
+              </li>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $pages; $i++): ?>
+              <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+              </li>
+            <?php endfor; ?>
+
+            <?php if ($page < $pages): ?>
+              <li class="page-item">
+                <a class="page-link" href="?page=<?= $page + 1; ?>">Next »</a>
+              </li>
+            <?php endif; ?>
+          </ul>
+        </nav>
+
       </div>
     </div>
   </div>   
