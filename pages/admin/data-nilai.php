@@ -46,7 +46,7 @@ $no = $start + 1;
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Data Siswa</title>
+  <title>Data Nilai Siswa</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
