@@ -21,8 +21,23 @@ if (isset($_POST['tambah'])) {
 if (isset($_GET['hapus'])) {
   $id = $_GET['hapus'];
   mysqli_query($conn, "DELETE FROM guru WHERE id = $id");
-  header("Location: guru.php");
+  header("Location: data-guru.php");
 }
+
+// Pagination logic
+$limit = 10; // jumlah data per halaman
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page > 1) ? ($page * $limit) - $limit : 0;
+
+// Hitung total data
+$result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM guru");
+$row_total = mysqli_fetch_assoc($result);
+$total = $row_total['total'];
+$pages = ceil($total / $limit);
+
+// Ambil data sesuai halaman
+$guru = mysqli_query($conn, "SELECT * FROM guru ORDER BY id DESC LIMIT $start, $limit");
+$no = $start + 1;
 ?>
 
 <!DOCTYPE html>
@@ -143,8 +158,8 @@ if (isset($_GET['hapus'])) {
           </thead>                      
           <tbody>
             <?php
-            $guru = mysqli_query($conn, "SELECT * FROM guru ORDER BY id DESC");
-            $no = 1;
+            // $guru = mysqli_query($conn, "SELECT * FROM guru ORDER BY id DESC");
+            // $no = 1;
             while ($row = mysqli_fetch_assoc($guru)) :
             ?>
               <tr>
@@ -162,7 +177,31 @@ if (isset($_GET['hapus'])) {
               </tr>
             <?php endwhile ?>
           </tbody>
-        </table>  
+        </table>
+        
+        <!-- Pagination -->
+        <nav>
+          <ul class="pagination justify-content-center">
+            <?php if ($page > 1): ?>
+              <li class="page-item">
+                <a class="page-link" href="?page=<?= $page - 1; ?>">« Prev</a>
+              </li>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $pages; $i++): ?>
+              <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+                <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
+              </li>
+            <?php endfor; ?>
+
+            <?php if ($page < $pages): ?>
+              <li class="page-item">
+                <a class="page-link" href="?page=<?= $page + 1; ?>">Next »</a>
+              </li>
+            <?php endif; ?>
+          </ul>
+        </nav>
+        
       </div>
     </div>
   </div>
