@@ -2,54 +2,37 @@
 include '../../includes/db.php';
 session_start();
 
-// Handle tambah data
+// $id = $_GET['id'];
+// $data = mysqli_query($conn, "SELECT * FROM siswa WHERE id = $id");
+// $siswa = mysqli_fetch_assoc($data);
+
+// Handle tambah
 if (isset($_POST['tambah'])) {
   $nis = $_POST['nis'];
   $nama = $_POST['nama'];
   $kelas = $_POST['kelas'];
-  $jk = $_POST['jk'];
+  $jenis_kelamin = $_POST['jenis_kelamin'];
   $alamat = $_POST['alamat'];
 
-  $query = "INSERT INTO siswa (nis, nama, kelas, jenis_kelamin, alamat)
-            VALUES ('$nis', '$nama', '$kelas', '$jk', '$alamat')";
+  $query = "INSERT INTO siswa (nis, nama, kelas, jenis_kelamin, alamat) 
+            VALUES ('$nis', '$nama', '$kelas', '$jenis_kelamin', '$alamat')";
+
   mysqli_query($conn, $query);
   header("Location: data-siswa.php");
 }
-
-// Handle hapus data
-if (isset($_GET['hapus'])) {
-  $id = $_GET['hapus'];
-  mysqli_query($conn, "DELETE FROM siswa WHERE id = $id");
-  header("Location: data-siswa.php");
-}
-
-// Pagination logic
-$limit = 10; // jumlah data per halaman
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$start = ($page > 1) ? ($page * $limit) - $limit : 0;
-
-// Hitung total data
-$result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM siswa");
-$row_total = mysqli_fetch_assoc($result);
-$total = $row_total['total'];
-$pages = ceil($total / $limit);
-
-// Ambil data sesuai halaman
-$siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY id DESC LIMIT $start, $limit");
-$no = $start + 1;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Data Siswa</title>
+  <title>Tambah Siswa</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body style="background:  #F6F8FD">
+<body>
 
 <!-- <?php include 'includes/sidebar.php'; ?> -->
 
@@ -116,100 +99,46 @@ $no = $start + 1;
         </div>
 </nav>
 
-<div class="container mt-4">
+<div class="container mt-4 ">
   <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-5">
       <div class="card p-4 shadow-md" style="border-radius: 5%;">
-        <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA SISWA</b></span></h3>
-        <!-- <form action="" method="POST" class="mb-4">
-          <div class="form-row">
-            <div class="col-md-2"><input type="text" name="nis" class="form-control rounded-pill" placeholder="NIS" required></div>
-            <div class="col-md-3"><input type="text" name="nama" class="form-control rounded-pill" placeholder="Nama Siswa" required></div>
-            <div class="col-md-2"><input type="text" name="kelas" class="form-control rounded-pill" placeholder="Kelas" required></div>
-            <div class="col-md-2">
-              <select name="jk" class="form-control rounded-pill">
+        <h2 class="text-center mt-3 mb-3"><span style="color: #50A745">Tambah Data Siswa</span></h2>
+        <form action="" method="POST">
+            <div class="form-group">
+              <label for="nis">NIS</label>
+              <input type="text" name="nis" id="nis" class="form-control rounded-pill" placeholder="NIS" required>
+            </div>
+            <div class="form-group">
+              <label for="nama">Nama Siswa</label>
+              <input type="text" name="nama" id="nama" class="form-control rounded-pill" placeholder="Nama Siswa" required>
+            </div>
+            <div class="form-group">
+              <label for="kelas">Kelas</label>
+              <input type="text" name="kelas" id="kelas" class="form-control rounded-pill" placeholder="Kelas" required>
+            </div>
+            <div class="form-group">
+              <label for="jenis_kelamin">Jenis Kelamin</label>
+              <select name="jenis_kelamin" id="jenis_kelamin" class="form-control rounded-pill">
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
             </div>
-            <div class="col-md-2"><input type="text" name="alamat" class="form-control rounded-pill" placeholder="Alamat"></div>
-            <div class="col-md-1"> -->
-              <!-- <button type="submit" name="tambah" class="btn btn-success btn-md btn-block rounded-pill">Add</button> -->
-            <!-- </div>
-          </div>
-        </form> -->
-
-        <form action="" method="POST" class="mb-4">
-          <div class="col-md-1">
-            <a href="tambah-data-siswa.php" class="btn btn-success btn-md rounded-pill">Tambah</a>
-          </div>
+            <div class="form-group">
+              <label for="alamat">Alamat</label>
+              <textarea name="alamat" id="alamat" class="form-control rounded-pill" required></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" name="tambah" class="btn btn-success btn-sm rounded-pill">Tambah</button>
+              <a href="data-siswa.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
+            </div>
         </form>
-        
-        <table class="table table-bordered-0 table-striped">
-          <thead class="thead-light">
-            <tr>
-              <th>No</th>
-              <th>NIS</th>
-              <th>Nama</th>
-              <th>Kelas</th>
-              <th>JK</th>
-              <th>Alamat</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            // $siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY id DESC");
-            // $no = 1;
-            while ($row = mysqli_fetch_assoc($siswa)) :
-            ?>
-              <tr>
-                <td><?= $no++ ?></td>
-                <td><?= $row['nis'] ?></td>
-                <td><?= $row['nama'] ?></td>
-                <td><?= $row['kelas'] ?></td>
-                <td><?= $row['jenis_kelamin'] ?></td>
-                <td><?= $row['alamat'] ?></td>
-                <td>
-                  <a href="edit-data-siswa.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm rounded-pill">Edit</a>
-                  <a href="?hapus=<?= $row['id'] ?>" onclick="return confirm('Yakin?')" class="btn btn-danger btn-sm rounded-pill">Hapus</a>
-                </td>
-              </tr>
-            <?php endwhile ?>
-          </tbody>
-        </table>
-
-         <!-- Pagination -->
-        <nav>
-          <ul class="pagination justify-content-center">
-            <?php if ($page > 1): ?>
-              <li class="page-item">
-                <a class="page-link" href="?page=<?= $page - 1; ?>">« Prev</a>
-              </li>
-            <?php endif; ?>
-
-            <?php for ($i = 1; $i <= $pages; $i++): ?>
-              <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
-                <a class="page-link" href="?page=<?= $i; ?>"><?= $i; ?></a>
-              </li>
-            <?php endfor; ?>
-
-            <?php if ($page < $pages): ?>
-              <li class="page-item">
-                <a class="page-link" href="?page=<?= $page + 1; ?>">Next »</a>
-              </li>
-            <?php endif; ?>
-          </ul>
-        </nav>
-        
       </div>
     </div>
-  </div>   
+  </div>
 </div>
 
 <?php include "../../includes/footer.php"; ?>
-
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 <!-- bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
