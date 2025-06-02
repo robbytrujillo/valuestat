@@ -8,17 +8,14 @@ session_start();
 
 // Handle tambah
 if (isset($_POST['tambah'])) {
-  $nis = $_POST['nis'];
-  $nama = $_POST['nama'];
-  $kelas = $_POST['kelas'];
-  $jenis_kelamin = $_POST['jenis_kelamin'];
-  $alamat = $_POST['alamat'];
+  $kode_kelas = $_POST['kode_kelas'];
+  $nama_kelas = $_POST['nama_kelas'];
 
-  $query = "INSERT INTO siswa (nis, nama, kelas, jenis_kelamin, alamat) 
-            VALUES ('$nis', '$nama', '$kelas', '$jenis_kelamin', '$alamat')";
+  $query = "INSERT INTO kelas (kode_kelas, nama_kelas) 
+            VALUES ('$kode_kelas', '$nama_kelas')";
 
   mysqli_query($conn, $query);
-  header("Location: data-siswa.php");
+  header("Location: data-kelas.php");
 }
 ?>
 

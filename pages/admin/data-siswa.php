@@ -140,8 +140,10 @@ $no = $start + 1;
         </form> -->
 
         <form action="" method="POST" class="mb-4">
-          <div class="col-md-1">
+          <div class="col-md-4">
             <a href="tambah-data-siswa.php" class="btn btn-success btn-md rounded-pill">Tambah</a>
+            <button class="btn btn-info rounded-pill" data-toggle="modal" data-target="#uploadCSVModal">Upload CSV</button>
+            <a href="template_siswa.csv" class="btn btn-secondary rounded-pill" download>Template CSV</a>
           </div>
         </form>
         
@@ -205,6 +207,29 @@ $no = $start + 1;
       </div>
     </div>
   </div>   
+</div>
+
+<!-- Modal Upload CSV -->
+<div class="modal fade" id="uploadCSVModal" tabindex="-1" aria-labelledby="uploadCSVModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadCSVModalLabel">Upload Data Siswa dari CSV</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="upload_csv.php" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="csv_file">Pilih File CSV</label>
+                        <input type="file" class="form-control-file" id="csv_file" name="csv_file" accept=".csv" required>
+                    </div>
+                    <button type="submit" name="upload_csv" class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php include "../../includes/footer.php"; ?>

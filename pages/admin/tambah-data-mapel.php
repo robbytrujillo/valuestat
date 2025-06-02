@@ -8,17 +8,14 @@ session_start();
 
 // Handle tambah
 if (isset($_POST['tambah'])) {
-  $nis = $_POST['nis'];
-  $nama = $_POST['nama'];
-  $kelas = $_POST['kelas'];
-  $jenis_kelamin = $_POST['jenis_kelamin'];
-  $alamat = $_POST['alamat'];
+  $kode_mapel = $_POST['kode_mapel'];
+  $nama_mapel = $_POST['nama_mapel'];
 
-  $query = "INSERT INTO siswa (nis, nama, kelas, jenis_kelamin, alamat) 
-            VALUES ('$nis', '$nama', '$kelas', '$jenis_kelamin', '$alamat')";
+  $query = "INSERT INTO mapel (kode_mapel, nama_mapel) 
+            VALUES ('$kode_mapel', '$nama_mapel')";
 
   mysqli_query($conn, $query);
-  header("Location: data-siswa.php");
+  header("Location: data-mapel.php");
 }
 ?>
 
@@ -26,7 +23,7 @@ if (isset($_POST['tambah'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tambah Siswa</title>
+  <title>Tambah Mapel</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -103,34 +100,19 @@ if (isset($_POST['tambah'])) {
   <div class="row justify-content-center">
     <div class="col-md-5">
       <div class="card p-4 shadow-md" style="border-radius: 5%;">
-        <h3 class="text-center mt-3 mb-3"><span style="color: #50A745"><b>TAMBAH SISWA</b></span></h3>
+        <h3 class="text-center mt-3 mb-3"><span style="color: #50A745"><b>TAMBAH MAPEL</b></span></h3>
         <form action="" method="POST">
             <div class="form-group">
-              <label for="nis">NIS</label>
-              <input type="text" name="nis" id="nis" class="form-control rounded-pill" placeholder="NIS" required>
+              <label for="kode_mapel">Kode Mapel</label>
+              <input type="text" name="kode_mapel" id="kode_mapel" class="form-control rounded-pill" placeholder="Kode Mapel" required>
             </div>
             <div class="form-group">
-              <label for="nama">Nama Siswa</label>
-              <input type="text" name="nama" id="nama" class="form-control rounded-pill" placeholder="Nama Siswa" required>
-            </div>
-            <div class="form-group">
-              <label for="kelas">Kelas</label>
-              <input type="text" name="kelas" id="kelas" class="form-control rounded-pill" placeholder="Kelas" required>
-            </div>
-            <div class="form-group">
-              <label for="jenis_kelamin">Jenis Kelamin</label>
-              <select name="jenis_kelamin" id="jenis_kelamin" class="form-control rounded-pill">
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="alamat">Alamat</label>
-              <textarea name="alamat" id="alamat" class="form-control rounded-pill" required></textarea>
+              <label for="nama_mapel">Nama Mapel</label>
+              <input type="text" name="nama_mapel" id="nama_mapel" class="form-control rounded-pill" placeholder="Nama Mapel" required>
             </div>
             <div class="text-center">
               <button type="submit" name="tambah" class="btn btn-success btn-sm rounded-pill">Tambah</button>
-              <a href="data-siswa.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
+              <a href="data-mapel.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
             </div>
         </form>
       </div>

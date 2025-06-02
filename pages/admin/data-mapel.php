@@ -117,15 +117,15 @@ $no = $start + 1;
                 <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA MAPEL</b></span></h3>
                 <form action="" method="POST" class="mb-4">
                     <div class="form-row">
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <input type="text" name="kode_mapel" class="form-control rounded-pill" placeholder="Kode Mapel" required>
                     </div>
                     <div class="col-md-5">
                         <input type="text" name="nama_mapel" class="form-control rounded-pill" placeholder="Nama Mapel" required>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" name="tambah" class="btn btn-success btn-block btn-md rounded-pill">Tambah</button>
-                    </div>
+                    </div> -->
+                        <div class="col-md-2">
+                            <button type="submit" name="tambah" class="btn btn-success btn-md rounded-pill">Tambah</button>
+                        </div>
                     </div>
                 </form>
 
