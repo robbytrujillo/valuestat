@@ -113,18 +113,19 @@ $no = $start + 1;
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card p-4 shadow-md" style="border-radius: 5%;">
+            <div class="card p-4 shadow-md" style="border-radius: 25px;">
                 <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA KELAS</b></span></h3>
                 <form action="" method="POST" class="mb-4">
                     <div class="form-row">
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <input type="text" name="kode_kelas" class="form-control rounded-pill" placeholder="Kode Kelas" required>
                         </div>
                         <div class="col-md-5">
                             <input type="text" name="nama_kelas" class="form-control rounded-pill" placeholder="Nama Kelas" required>
-                        </div>
+                        </div> -->
                         <div class="col-md-2">
-                            <button type="submit" name="tambah" class="btn btn-success rounded-pill btn-block">Tambah</button>
+                            <!-- <button type="submit" name="tambah" class="btn btn-success rounded-pill btn-block">Tambah</button> -->
+                            <a href="tambah-data-kelas.php" class="btn btn-success btn-md rounded-pill">Tambah</a>
                         </div>
                     </div>
                 </form>

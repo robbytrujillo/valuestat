@@ -120,12 +120,12 @@ $no = $start + 1;
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <div class="card p-4 shadow-md" style="border-radius: 5%;">
+      <div class="card p-4 shadow-md" style="border-radius: 25px;">
         <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA GURU</b></span></h3>
         <div class="col-md-10">
           <form action="" method="POST" class="mb-4">
             <div class="form-row mt-3 mb-2">
-              <div class="col-md-2"><input type="text" name="nip" class="form-control rounded-pill" placeholder="NIP" required></div>
+              <!-- <div class="col-md-2"><input type="text" name="nip" class="form-control rounded-pill" placeholder="NIP" required></div>
               <div class="col-md-3"><input type="text" name="nama" class="form-control rounded-pill" placeholder="Nama Guru" required></div>
               <div class="col-md-2"><input type="text" name="mapel" class="form-control rounded-pill" placeholder="Mapel" required></div>
               <div class="col-md-2">
@@ -135,9 +135,10 @@ $no = $start + 1;
                 </select>
               </div>
               <div class="col-md-2"><input type="text" name="no_hp" class="form-control rounded-pill" placeholder="No. HP"></div>
-              <div class="col-md-3 mt-2"><input type="email" name="email" class="form-control rounded-pill" placeholder="Email"></div>
-              <div class="col-md-1 mt-2">
-                <button type="submit" name="tambah" class="btn btn-primary btn-md btn-block rounded-pill">Add</button>
+              <div class="col-md-3 mt-2"><input type="email" name="email" class="form-control rounded-pill" placeholder="Email"></div> -->
+              <div class="col-md-2 mt-2">
+                <!-- <button type="submit" name="tambah" class="btn btn-primary btn-md btn-block rounded-pill">Add</button> -->
+                 <a href="tambah-data-guru.php" class="btn btn-success btn-md rounded-pill">Tambah</a>
               </div>
             </div>
           </form>

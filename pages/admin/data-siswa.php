@@ -119,7 +119,7 @@ $no = $start + 1;
 <div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <div class="card p-4 shadow-md" style="border-radius: 5%;">
+      <div class="card p-4 shadow-md" style="border-radius: 25px;">
         <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA SISWA</b></span></h3>
         <!-- <form action="" method="POST" class="mb-4">
           <div class="form-row">

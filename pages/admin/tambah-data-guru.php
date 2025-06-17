@@ -8,14 +8,18 @@ session_start();
 
 // Handle tambah
 if (isset($_POST['tambah'])) {
-  $kode_kelas = $_POST['kode_kelas'];
-  $nama_kelas = $_POST['nama_kelas'];
+  $nip = $_POST['nip'];
+  $nama = $_POST['nama'];
+  $mapel = $_POST['mapel'];
+  $jenis_kelamin = $_POST['jenis_kelamin'];
+  $no_hp = $_POST['no_hp'];
+  $email = $_POST['email'];
 
-  $query = "INSERT INTO kelas (kode_kelas, nama_kelas) 
-            VALUES ('$kode_kelas', '$nama_kelas')";
+  $query = "INSERT INTO guru (nip, nama, mapel, jenis_kelamin, no_hp, email) 
+            VALUES ('$nip', '$nama', '$mapel', '$jenis_kelamin', '$no_hp', '$email')";
 
   mysqli_query($conn, $query);
-  header("Location: data-kelas.php");
+  header("Location: data-guru.php");
 }
 ?>
 
@@ -23,7 +27,7 @@ if (isset($_POST['tambah'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tambah Kelas</title>
+  <title>Tambah Guru</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -99,16 +103,35 @@ if (isset($_POST['tambah'])) {
 <div class="container mt-4 ">
   <div class="row justify-content-center">
     <div class="col-md-5">
-      <div class="card p-4 shadow-md" style="border-radius: 25px;">
-        <h3 class="text-center mt-3 mb-3"><span style="color: #50A745"><b>TAMBAH KELAS</b></span></h3>
+      <div class="card p-4 shadow-md" style="border-radius: 5%;">
+        <h3 class="text-center mt-3 mb-3"><span style="color: #50A745"><b>TAMBAH GURU</b></span></h3>
         <form action="" method="POST">
             <div class="form-group">
-              <label for="kode_kelas">Kode Kelas</label>
-              <input type="text" name="kode_kelas" id="kode_kelas" class="form-control rounded-pill" placeholder="Kode Kelas" required>
+              <label for="nip">NIP</label>
+              <input type="text" name="nip" id="nip" class="form-control rounded-pill" placeholder="NIP" required>
             </div>
             <div class="form-group">
-              <label for="nama_kelas">Nama Kelas</label>
-              <input type="text" name="nama_kelas" id="nama_kelas" class="form-control rounded-pill" placeholder="Nama Kelas" required>
+              <label for="nama">Nama Guru</label>
+              <input type="text" name="nama" id="nama" class="form-control rounded-pill" placeholder="Nama Guru" required>
+            </div>
+            <div class="form-group">
+              <label for="mapel">Mapel</label>
+              <input type="text" name="mapel" id="mapel" class="form-control rounded-pill" placeholder="Mata Pelajaran" required>
+            </div>
+            <div class="form-group">
+              <label for="jenis_kelamin">Jenis Kelamin</label>
+              <select name="jenis_kelamin" id="jenis_kelamin" class="form-control rounded-pill">
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="no_hp">No Handphone</label>
+              <input type="no_hp" name="no_hp" id="no_hp" class="form-control rounded-pill" placeholder="Nomor Handphone" required>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" name="email" id="email" class="form-control rounded-pill" placeholder="Email" required>
             </div>
             <div class="text-center">
               <button type="submit" name="tambah" class="btn btn-success btn-sm rounded-pill">Tambah</button>
