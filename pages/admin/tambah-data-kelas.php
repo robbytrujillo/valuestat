@@ -112,7 +112,7 @@ if (isset($_POST['tambah'])) {
             </div>
             <div class="text-center">
               <button type="submit" name="tambah" class="btn btn-success btn-sm rounded-pill">Tambah</button>
-              <a href="data-siswa.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
+              <a href="data-kelas.php" class="btn btn-info btn-sm rounded-pill">Kembali</a>
             </div>
         </form>
       </div>

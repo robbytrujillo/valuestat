@@ -124,7 +124,8 @@ $no = $start + 1;
                         <input type="text" name="nama_mapel" class="form-control rounded-pill" placeholder="Nama Mapel" required>
                     </div> -->
                         <div class="col-md-2">
-                            <button type="submit" name="tambah" class="btn btn-success btn-md rounded-pill">Tambah</button>
+                            <!-- <button type="submit" name="tambah" class="btn btn-success btn-md rounded-pill">Tambah</button> -->
+                            <a href="tambah-data-mapel.php" class="btn btn-success btn-md rounded-pill">Tambah</a>
                         </div>
                     </div>
                 </form>
