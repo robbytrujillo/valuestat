@@ -2,19 +2,19 @@
 include '../../includes/db.php';
 session_start();
 
-// Tambah Mapel
+// Tambah Kelas
 if (isset($_POST['tambah'])) {
-  $kode = $_POST['kode_mapel'];
-  $nama = $_POST['nama_mapel'];
-  mysqli_query($conn, "INSERT INTO mapel (kode_mapel, nama_mapel) VALUES ('$kode', '$nama')");
-  header("Location: data-mapel.php");
+  $kode = $_POST['kode_kelas'];
+  $nama = $_POST['nama_kelas'];
+  mysqli_query($conn, "INSERT INTO kelas (kode_kelas, nama_kelas) VALUES ('$kode', '$nama')");
+  header("Location: data-kelas.php");
 }
 
-// Hapus Mapel
+// Hapus Kelas
 if (isset($_GET['hapus'])) {
   $id = $_GET['hapus'];
-  mysqli_query($conn, "DELETE FROM mapel WHERE id = $id");
-  header("Location: data-mapel.php");
+  mysqli_query($conn, "DELETE FROM kelas WHERE id = $id");
+  header("Location: data-kelas.php");
 }
 
 // Pagination logic
@@ -23,13 +23,13 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $start = ($page > 1) ? ($page * $limit) - $limit : 0;
 
 // Hitung total data
-$result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM mapel");
+$result = mysqli_query($conn, "SELECT COUNT(*) AS total FROM kelas");
 $row_total = mysqli_fetch_assoc($result);
 $total = $row_total['total'];
 $pages = ceil($total / $limit);
 
 // Ambil data sesuai halaman
-$mapel = mysqli_query($conn, "SELECT * FROM mapel ORDER BY id DESC LIMIT $start, $limit");
+$kelas = mysqli_query($conn, "SELECT * FROM kelas ORDER BY id DESC LIMIT $start, $limit");
 $no = $start + 1;
 ?>
 
@@ -37,7 +37,7 @@ $no = $start + 1;
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Data Mata Pelajaran</title>
+  <title>Data Kelas</title>
   <link rel="icon" type="image/x-icon" href="../../assets/images/ihbs-logo.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -114,49 +114,51 @@ $no = $start + 1;
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card p-4 shadow-md" style="border-radius: 25px;">
-                <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA MAPEL</b></span></h3>
+                <h3 class="text-center mt-2 mb-3"><span style="color: #50A745"><b>DATA KELAS</b></span></h3>
                 <form action="" method="POST" class="mb-4">
                     <div class="form-row">
-                    <!-- <div class="col-md-3">
-                        <input type="text" name="kode_mapel" class="form-control rounded-pill" placeholder="Kode Mapel" required>
-                    </div>
-                    <div class="col-md-5">
-                        <input type="text" name="nama_mapel" class="form-control rounded-pill" placeholder="Nama Mapel" required>
-                    </div> -->
+                        <!-- <div class="col-md-3">
+                            <input type="text" name="kode_kelas" class="form-control rounded-pill" placeholder="Kode Kelas" required>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="text" name="nama_kelas" class="form-control rounded-pill" placeholder="Nama Kelas" required>
+                        </div> -->
                         <div class="col-md-2">
-                            <!-- <button type="submit" name="tambah" class="btn btn-success btn-md rounded-pill">Tambah</button> -->
-                            <a href="tambah-data-mapel.php" class="btn btn-success btn-md rounded-pill">Tambah</a>
+                            <!-- <button type="submit" name="tambah" class="btn btn-success rounded-pill btn-block">Tambah</button> -->
+                            <a href="tambah-data-kelas.php" class="btn btn-success btn-md rounded-pill">Tambah</a>
                         </div>
                     </div>
                 </form>
 
                 <table class="table table-bordered-0 table-striped">
                     <thead class="thead-light">
-                    <tr>
-                        <th>No</th>
-                        <th>Kode Mapel</th>
-                        <th>Nama Mapel</th>
-                        <th>Aksi</th>
-                    </tr>
-                    </thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Kode Kelas</th>
+                            <th>Nama Kelas</th>
+                            <th>Aksi</th>
+                        </tr>
+                     </thead>
                     <tbody>
                     <?php
-                    while ($row = mysqli_fetch_assoc($mapel)) :
-                    ?>
+                    // $kelas = mysqli_query($conn, "SELECT * FROM kelas ORDER BY id DESC");
+                    // $no = 1;
+                    while ($row = mysqli_fetch_assoc($kelas)) :
+                    ?>        
                     <tr>
                         <td><?= $no++ ?></td>
-                        <td><?= $row['kode_mapel'] ?></td>
-                        <td><?= $row['nama_mapel'] ?></td>
+                        <td><?= $row['kode_kelas'] ?></td>
+                        <td><?= $row['nama_kelas'] ?></td>
                         <td>
-                        <a href="edit-data-mapel.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm rounded-pill">Edit</a>
-                        <a href="?hapus=<?= $row['id'] ?>" onclick="return confirm('Yakin hapus mapel ini?')" class="btn btn-danger btn-sm rounded-pill">Hapus</a>
+                        <a href="edit-data-kelas.php?id=<?= $row['id'] ?>" class="btn btn-warning btn-sm rounded-pill">Edit</a>
+                        <a href="?hapus=<?= $row['id'] ?>" onclick="return confirm('Yakin ingin hapus kelas ini?')" class="btn btn-danger btn-sm rounded-pill">Hapus</a>
                         </td>
                     </tr>
                     <?php endwhile ?>
                     </tbody>
-                </table>
+                 </table>
 
-                <!-- Pagination -->
+                 <!-- Pagination -->
                 <nav>
                     <ul class="pagination justify-content-center">
                         <?php if ($page > 1): ?>
@@ -181,7 +183,7 @@ $no = $start + 1;
 
             </div>
         </div>
-    </div>  
+    </div>   
 </div>
 
 <?php include "../../includes/footer.php"; ?>
